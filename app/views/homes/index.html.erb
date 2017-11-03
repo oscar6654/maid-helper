@@ -1,0 +1,89 @@
+<%- if current_user %>
+  <%- if current_user.age.nil? %>
+    <script>
+    $(document).ready(function(){
+       // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+       $('#modal1').modal('open');
+     });
+    </script>
+  <%end%>
+<%else%>
+<center>
+  <h3>Welcome Join Now</h3>
+</center>
+<%end%>
+
+
+<%- if current_user %>
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <div class='center'>
+    <br/>
+
+      <h3 class="indigo-text">Let your profile work for you <%= current_user.first_name %>!</h3>
+
+    </div>
+    <br/>
+
+    <%= form_for(@user, url: u_customize_user_path(@user)) do |f| %>
+
+      <div>
+        <div class='input-field s6'>
+          <%= f.text_field :age, type: "number", class: "validate", :required => true %>
+          <label for="age">Age</label>
+        </div>
+
+        <div class='input-field s6'>
+          <%= f.text_field :dialect, id: "dialect", type: "text", class: "validate", :required => true %>
+          <label for="dialect">Dialect</label>
+        </div>
+      </div>
+
+      <div>
+        <div class="input-field s6">
+          <%= f.collection_select(:preffered_location, @state, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="preferred">Preffered Work Location</label>
+        </div>
+
+        <div class="input-field s6">
+           <%= f.collection_select(:current_location, @state, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="location">Current Location</label>
+        </div>
+      </div>
+      <div class="input-field s12">
+        <%= f.collection_select(:gender, @gender, :first, :last, {:prompt => "Please Select"}) %>
+        <label for="gender">Gender</label>
+      </div>
+      <div>
+        <div class="input-field s6">
+           <%= f.collection_select(:cooking_skills, @rating, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="cook">Cooking Skills</label>
+        </div>
+        <div class="input-field s6">
+           <%= f.collection_select(:cleaning_skills, @rating, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="clean">Cleaning Skills</label>
+        </div>
+      </div>
+      <div class="input-field s12">
+        <%= f.text_area :additional_desc, id: "additional_desc", type: "text", class:"materialize-textarea" %>
+        <label for="additional_desc">Additional Description</label>
+      </div>
+      <div class="file-field input-field s12">
+        <div class="btn green lighten-3">
+          <span>File</span>
+          <%= f.file_field :profile_photo, id: "upload"%>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate", placeholder="Upload Profile Picture">
+        </div>
+      </div>
+
+
+
+      <br />
+      <%= f.submit "Done" , class: "btn waves-effect green" %>
+
+
+  <%end%>
+</div>
+      <%end%>

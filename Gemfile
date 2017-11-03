@@ -7,6 +7,18 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'webpacker'
+gem 'devise'
+gem 'materialize-sass'
+gem 'material_icons'
+gem 'friendly_id'
+gem 'carrierwave'
+gem 'fog'
+gem 'rails-assets-yadcf', source: 'https://rails-assets.org'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'font-awesome-sass'
+
+
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
@@ -21,6 +33,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers', require: false
   gem 'valid_attribute'
+  gem 'dotenv-rails'
+  gem 'pry-remote'
 end
 
 group :production do

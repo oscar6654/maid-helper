@@ -3,12 +3,75 @@
   <head>
     <title>Maid</title>
     <%= csrf_meta_tags %>
-
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
+  <header>
+    <nav class="nav-extended green">
+    <div class="nav-background"></div>
+      <div class="nav-wrapper container">
+        <%= link_to "Helper", root_path, class:"brand-logo"%>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <% if current_user %>
+              <% if current_user.admin %>
+                  <li><%= link_to "All Users List", users_path %></li>
+              <%end%>
+          <!-- <li><%= link_to "Profile", current_user %> </li> -->
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown5"><%= current_user.first_name %><i class="material-icons right">arrow_drop_down</i></a></li>
+          <ul id="dropdown5" class="dropdown-content">
+              <li><%= link_to "Profile", current_user %> </li>
+              <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
+          </ul>
+          <%else%>
+          <li><%=link_to "Log in", new_user_session_path %></li>
+          <li><%=link_to "Create Account", new_user_registration_path %></li>
+
+          <%end%>
+        </ul>
+      </div>
+      <div class="nav-header center">
+        <% if current_page?(users_path) %>
+          <h1>Admin Console</h1>
+        <% elsif current_page?(root_path) %>
+          <h1>House Helper</h1>
+        <% elsif current_page?(new_user_session_path)%>
+          <h1>Authentication</h1>
+        <% elsif current_page?(new_user_registration_path) || current_page?(users_finish_signup_google_path) || current_page?(users_finish_signup_path)%>
+          <h1>Registration</h1>
+        <% elsif current_page?(new_user_password_path) || current_page?(edit_user_password_path) || current_page?(edit_user_registration_path)%>
+          <h1>Account</h1>
+        <%else%>
+          <h1>House Helper</h1>
+        <%end%>
+        <div class="tagline">Tagline</div>
+      </div>
+    </nav>
+    <ul class="side-nav" id="mobile-demo">
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <li><a href="collapsible.html">JavaScript</a></li>
+    </ul>
+  </header>
 
   <body>
-    <%= yield %>
+    <% if flash[:notice] %>
+      <script type="text/javascript">
+        Materialize.toast('<%= notice %>', 6000)
+      </script>
+    <% elsif flash[:error] %>
+      <script type="text/javascript">
+        Materialize.toast('<%= flash[:error] %>', 6000)
+      </script>
+    <% elsif flash[:alert] %>
+      <script type="text/javascript">
+        Materialize.toast('<%= alert %>', 6000)
+      </script>
+    <% end %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

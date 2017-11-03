@@ -10,5 +10,30 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery.dataTables
+//= require dataTables.responsive
+//= require materialize
 //= require rails-ujs
 //= require_tree .
+
+$(document).ready(function() {
+  Materialize.updateTextFields();
+  $(".button-collapse").sideNav();
+  $('.parallax').parallax();
+});
+$(document).ready(function(){
+    $('.dropdown-button').dropdown(
+        {
+            hover: true,
+            belowOrigin: true,
+            constrainWidth: false
+        });
+  $('#textarea1').trigger('autoresize');
+  $('#close-modal').modal('close');
+
+});
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
