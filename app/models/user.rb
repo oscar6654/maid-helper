@@ -1,40 +1,62 @@
 class User < ApplicationRecord
   extend FriendlyId
+  # filter_parameter_logging :verification_code
   friendly_id :first_name, use: :slugged
   attr_accessor :login
+  has_many :jobs, dependent: :destroy
+  has_many :applicants, dependent: :destroy
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :verifiable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
-
+  #  validates :mobile_number, presence: true
+  #  validates :verification_code, presence: true
+   validates_uniqueness_of :mobile_number
+   validates :mobile_number, phone: { possible: false, allow_blank: true, types: [:mobile] }
    validates :first_name, presence: true
   #  validates :last_name, presence: true
    validates :job_type, presence: true
    validates :username, uniqueness: true
-
+  #  verify_fields :verification_code
+   #USERNAME FIELD
    def self.find_for_database_authentication warden_conditions
      conditions = warden_conditions.dup
      login = conditions.delete(:login)
      where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
    end
-   def self.new_with_session(params, session)
-     super.tap do |user|
-       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-         user.email = data["email"] if user.email.blank?
-       end
-     end
-   end
-   def self.from_omniauth(auth)
-     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-       user.email = auth.info.email
-       user.password = Devise.friendly_token[0,20]
-       user.first_name = auth.info.name   # assuming the user model has a name
-       user.profile_photo = auth.info.image # assuming the user model has an image
-       # If you are using confirmable and the provider(s) you use validate emails,
-       # uncomment the line below to skip the confirmation emails.
-       # user.skip_confirmation!
-     end
-   end
+   #####
+
+   #MOBILE SMS#
+
+  def needs_mobile_number_verifying?
+    #  binding.remote_pry
+    if is_verified
+      return false
+    end
+    if mobile_number.blank?
+      return false
+    end
+    if !verification_code.blank?
+      return false
+    end
+    return true
+  end
+
+  def resend_code?
+    if verification_code.blank?
+      return false
+    end
+    return true
+  end
+
+  def mobile_number_filled?
+    if mobile_number.blank?
+      return true
+    end
+    return false
+  end
+   ###########
 
   mount_uploader :profile_photo, ProfilePhotoUploader
   mount_uploader :proof, ProofUploader
@@ -74,6 +96,13 @@ class User < ApplicationRecord
     admin == true
   end
 
+  def employee?
+    job_type == "Employee"
+  end
+
+  def employer?
+    job_type == "Employer"
+  end
   protected
 
   # Attempt to find a user by it's email. If a record is found, send new

@@ -17,7 +17,15 @@ gem 'rails-assets-yadcf', source: 'https://rails-assets.org'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'font-awesome-sass'
-
+gem 'twilio-ruby', '~> 4.0.0'
+gem 'phonelib'
+gem 'devise-verifiable'
+gem 'httparty'
+gem "ckeditor"
+gem 'rails-assets-jasny-bootstrap', source: 'https://rails-assets.org'
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-materialize', github: 'harrybournis/will_paginate-materialize'
+gem 'faker'
 
 group :development do
   gem 'listen', '~> 3.0.5'

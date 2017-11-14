@@ -1,0 +1,104 @@
+<!-- <h2>Account Verification</h2>
+
+<%= form_for(resource, as: resource_name, url: user_verification_path, method: :post) do |f| %>
+
+  <div class='input-field col s12'>
+    <%= f.text_field :mobile_number, type: "number", class: "validate", :required => true %>
+    <label for="mobile_number">Mobile Number</label>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Verify" %>
+  </div>
+<% end %>
+
+<%= mobile_verification_button %>
+<%= verify_mobile_number_form %>
+
+ -->
+
+
+<head>
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+    body {
+      background: #fff;
+    }
+
+    .input-field input[type=date]:focus + label,
+    .input-field input[type=text]:focus + label,
+    .input-field input[type=email]:focus + label,
+    .input-field input[type=password]:focus + label {
+      color: #e91e63;
+    }
+
+    .input-field input[type=date]:focus,
+    .input-field input[type=text]:focus,
+    .input-field input[type=email]:focus,
+    .input-field input[type=password]:focus {
+      border-bottom: 2px solid #e91e63;
+      box-shadow: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="section"></div>
+  <main>
+    <center>
+      <div class="section"></div>
+      <div class="section"></div>
+
+      <div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+          <!-- <%= form_for(resource, as: resource_name, url: user_verification_path, method: :post) do |f| %> -->
+            <!-- <div class='row'>
+              <div class='col s12'>
+                <h4 class="indigo-text">Enter Mobile Number</h4>
+              </div>
+            </div> -->
+
+            <%= mobile_number_form %>
+            <%= mobile_verification_button %>
+            <%= verify_mobile_number_form %>
+            <%= change_mobile_number %>
+            <!-- <div class='input-field col s12'>
+              <%= f.text_field :mobile_number, type: "number", class: "validate", :required => true %>
+              <label for="mobile_number">Mobile Number</label>
+            </div>
+            <center>
+              <div class='row'>
+                <%= f.submit "Update" , class: "col s12 btn btn-large waves-effect indigo" %>
+              </div>
+            </center> -->
+            <!-- <div class='row'>
+              <label style='float: left;'>
+                <%= link_to "Back", new_user_session_path, class:'pink-text' %>
+              </label>
+            </div> -->
+          <!-- <%end%> -->
+
+
+
+        </div>
+      </div>
+
+      <%=link_to "Create Account", new_user_registration_path %>
+    </center>
+
+    <div class="section"></div>
+    <div class="section"></div>
+  </main>
+
+</body>

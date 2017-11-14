@@ -1,0 +1,35 @@
+<br/>
+<br/>
+
+<%= form_for @job_edit do |f| %>
+<div class="row">
+  <div class='input-field col s12'>
+    <%= f.text_field :title, id: "title", type: "text", class: "validate", :required => true %>
+    <label for="title">Post Title</label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.collection_select(:work_location, @state, :first, :last, {:prompt => "Please Select"}) %>
+    <label for="work_location">Work Location</label>
+  </div>
+</div>
+
+<%= f.cktext_area :job_description, :heigth=>'1500px' %>
+<br/>
+<%= f.check_box :text_notifications, type: "checkbox", id: "text_notif"%>
+<label for="text_notif">Text Notifications</label>
+<br/>
+<%= f.check_box :email_notifications, type: "checkbox", id: "email_notif"%>
+<label for="email_notif">Email Notifications</label>
+<br/>
+
+<br/>
+<div class="row">
+  <div class="col s12">
+    <button type='submit' name='btn_login' class='btn waves-effect green'>Update Post</button>
+
+  </div>
+</div>
+<%end%>

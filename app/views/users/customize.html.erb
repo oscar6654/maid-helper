@@ -14,21 +14,6 @@
     body {
       background: #fff;
     }
-
-    /*.input-field input[type=date]:focus + label,
-    .input-field input[type=text]:focus + label,
-    .input-field input[type=email]:focus + label,
-    .input-field input[type=password]:focus + label {
-      color: #e91e63;
-    }
-
-    .input-field input[type=date]:focus,
-    .input-field input[type=text]:focus,
-    .input-field input[type=email]:focus,
-    .input-field input[type=password]:focus {
-      border-bottom: 2px solid #e91e63;
-      box-shadow: none;
-    }*/
   </style>
 </head>
 
@@ -42,12 +27,12 @@
 
       <div class="container">
         <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 48px 15px 48px; border: 1px solid #EEE;">
+  <%- if current_user && current_user.employee? %>
+          <div class="hide-on-small-only">
           <%= form_for(@user, url: u_customize_user_path(@user)) do |f| %>
             <div class='col s12'>
               <h4 class="indigo-text">Customize Profile</h4>
             </div>
-
-          <div class="hide-on-small-only">
             <div>
               <div class='input-field col s6'>
                 <%= f.text_field :age, type: "number", class: "validate", :required => true %>
@@ -69,10 +54,18 @@
                 <label for="location">Current Location</label>
               </div>
             </div>
-            <div class="input-field col s12">
-              <%= f.collection_select(:gender, @gender, :first, :last, {:prompt => "Please Select"}) %>
-              <label for="gender">Gender</label>
+
+            <div>
+              <div class="input-field col s6">
+                <%= f.collection_select(:gender, @gender, :first, :last, {:prompt => "Please Select"}) %>
+                <label for="gender">Gender</label>
+              </div>
+              <div class="input-field col s6">
+                <%= f.text_field :mobile_number, id: "mobile_number", type: "text", :required => true, :data => {:mask=> '9999-999-9999'} %>
+                <label for="mobile_numbner">Mobile Number (0918-123-4567)</label>
+              </div>
             </div>
+
             <div>
               <div class="input-field col s6">
                  <%= f.collection_select(:cooking_skills, @rating, :first, :last, {:prompt => "Please Select"}) %>
@@ -96,67 +89,237 @@
                 <input class="file-path validate", placeholder="Upload Profile Picture">
               </div>
             </div>
-            <br />
-            <center>
-                <%= f.submit "Update" , class: "col s12 btn btn-large waves-effect indigo" %>
-              <br />
-              <br />
-              <br />
-            </center>
-          </div>
-            <div class="hide-on-med-and-up">
-              <div class='input-field col s12'>
-                <%= f.text_field :age, type: "number", class: "validate", :required => true %>
-                <label for="age">Age</label>
-              </div>
-              <div class='input-field col s12'>
-                <%= f.text_field :dialect, id: "dialect", type: "text", class: "validate", :required => true %>
-                <label for="dialect">Dialect</label>
-              </div>
-              <div class="input-field col s12">
-                <%= f.collection_select(:preffered_location, @state, :first, :last, {:prompt => "Please Select"}) %>
-                <label for="preferred">Preffered Location</label>
-              </div>
 
-              <div class="input-field col s12">
-                 <%= f.collection_select(:current_location, @state, :first, :last, {:prompt => "Please Select"}) %>
-                <label for="location">Current Location</label>
-              </div>
-            <div class="input-field col s12">
-              <%= f.collection_select(:gender, @gender, :first, :last, {:prompt => "Please Select"}) %>
-              <label for="gender">Gender</label>
-            </div>
-              <div class="input-field col s12">
-                 <%= f.collection_select(:cooking_skills, @rating, :first, :last, {:prompt => "Please Select"}) %>
-                <label for="cook">Cooking Skills</label>
-              </div>
-              <div class="input-field col s12">
-                 <%= f.collection_select(:cleaning_skills, @rating, :first, :last, {:prompt => "Please Select"}) %>
-                <label for="clean">Cleaning Skills</label>
-              </div>
-            <div class="input-field col s12">
-              <%= f.text_area :additional_desc, id: "additional_desc", type: "text", class:"materialize-textarea" %>
-              <label for="additional_desc">Additional Description</label>
-            </div>
             <div class="file-field input-field col s12">
               <div class="btn green lighten-3">
                 <span>File</span>
-                <%= f.file_field :profile_photo, id: "upload"%>
+                <%= f.file_field :proof, id: "upload"%>
               </div>
               <div class="file-path-wrapper">
-                <input class="file-path validate", placeholder="Upload Profile Picture">
+                <input class="file-path validate", placeholder="Document Verification">
               </div>
             </div>
+
             <br />
             <center>
-                <%= f.submit "Update" , class: "col s12 btn btn-large waves-effect indigo" %>
+              <button type='submit' name='btn_login' class='col s12 btn btn-large indigo'>Update!</button>
               <br />
               <br />
               <br />
             </center>
           </div>
-
           <%end%>
+
+
+
+
+          <div class="hide-on-med-and-up">
+            <%= form_for(@user, url: u_customize_user_path(@user)) do |f| %>
+              <div class='col s12'>
+                <h4 class="indigo-text">Customize Profile</h4>
+              </div>
+              <div class='input-field col s12'>
+                <%= f.text_field :age, type: "number", class: "validate", :required => true %>
+                <label for="age">Age</label>
+              </div>
+              <div class='input-field col s12'>
+                <%= f.text_field :dialect, id: "dialect", type: "text", class: "validate", :required => true %>
+                <label for="dialect">Dialect</label>
+              </div>
+              <div class="input-field col s12">
+                <%= f.collection_select(:preffered_location, @state, :first, :last, {:prompt => "Please Select"}) %>
+                <label for="preferred">Preffered Location</label>
+              </div>
+
+              <div class="input-field col s12">
+                 <%= f.collection_select(:current_location, @state, :first, :last, {:prompt => "Please Select"}) %>
+                <label for="location">Current Location</label>
+              </div>
+              <div class="input-field col s12">
+                <%= f.collection_select(:gender, @gender, :first, :last, {:prompt => "Please Select"}) %>
+                <label for="gender">Gender</label>
+              </div>
+
+              <div class="input-field col s12">
+                <%= f.text_field :mobile_number, id: "mobile_number", type: "text", :required => true, :data => {:mask=> '9999-999-9999'} %>
+                <label for="mobile_numbner">Mobile Number (0918-123-4567)</label>
+              </div>
+              <div class="input-field col s12">
+                 <%= f.collection_select(:cooking_skills, @rating, :first, :last, {:prompt => "Please Select"}) %>
+                <label for="cook">Cooking Skills</label>
+              </div>
+              <div class="input-field col s12">
+                 <%= f.collection_select(:cleaning_skills, @rating, :first, :last, {:prompt => "Please Select"}) %>
+                <label for="clean">Cleaning Skills</label>
+              </div>
+            <div class="input-field col s12">
+              <%= f.text_area :additional_desc, id: "additional_desc", type: "text", class:"materialize-textarea" %>
+              <label for="additional_desc">Additional Description</label>
+            </div>
+
+            <div class="file-field input-field col s12">
+              <div class="btn green lighten-3">
+                <span>File</span>
+                <%= f.file_field :profile_photo, id: "upload"%>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate", placeholder="Upload Profile Picture">
+              </div>
+            </div>
+
+            <div class="file-field input-field col s12">
+              <div class="btn green lighten-3">
+                <span>File</span>
+                <%= f.file_field :proof, id: "upload"%>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate", placeholder="Document Verification">
+              </div>
+            </div>
+
+            <br />
+            <br/>
+            <br/>
+            <center>
+              <br />
+              <br />
+              <button type='submit' name='btn_login' class='col s12 btn btn-large indigo'>Update!</button>
+                <!-- <%= f.submit "Update" , class: "col s12 btn btn-large waves-effect indigo" %> -->
+            </center>
+              <br/>
+              <br/>
+              <br/>
+          </div>
+          <%end%>
+    <%else%>
+
+    <div class="hide-on-small-only">
+    <%= form_for(@user, url: u_customize_user_path(@user)) do |f| %>
+      <div class='col s12'>
+        <h4 class="indigo-text">Customize Profile</h4>
+      </div>
+      <div>
+        <div class='input-field col s6'>
+          <%= f.text_field :age, type: "number", class: "validate", :required => true %>
+          <label for="age">Age</label>
+        </div>
+        <div class='input-field col s6'>
+          <%= f.text_field :dialect, id: "dialect", type: "text", class: "validate", :required => true %>
+          <label for="dialect">Dialect</label>
+        </div>
+      </div>
+      <div class="input-field col s12">
+         <%= f.collection_select(:current_location, @state, :first, :last, {:prompt => "Please Select"}) %>
+        <label for="location">Current Location</label>
+      </div>
+
+      <div>
+        <div class="input-field col s6">
+          <%= f.collection_select(:gender, @gender, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="gender">Gender</label>
+        </div>
+        <div class="input-field col s6">
+          <%= f.text_field :mobile_number, id: "mobile_number", type: "text", :required => true, :data => {:mask=> '9999-999-9999'} %>
+          <label for="mobile_numbner">Mobile Number (0918-123-4567)</label>
+        </div>
+      </div>
+
+      <div class="file-field input-field col s12">
+        <div class="btn green lighten-3">
+          <span>File</span>
+          <%= f.file_field :profile_photo, id: "upload"%>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate", placeholder="Upload Profile Picture">
+        </div>
+      </div>
+
+      <div class="file-field input-field col s12">
+        <div class="btn green lighten-3">
+          <span>File</span>
+          <%= f.file_field :proof, id: "upload"%>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate", placeholder="Document Verification">
+        </div>
+      </div>
+
+      <br />
+      <center>
+        <button type='submit' name='btn_login' class='col s12 btn btn-large indigo'>Update!</button>
+          <!-- <%= f.submit "Update" , class: "col s12 btn btn-large waves-effect indigo" %> -->
+        <br />
+        <br />
+        <br />
+      </center>
+    </div>
+    <%end%>
+
+
+
+
+    <div class="hide-on-med-and-up">
+      <%= form_for(@user, url: u_customize_user_path(@user)) do |f| %>
+        <div class='col s12'>
+          <h4 class="indigo-text">Customize Profile</h4>
+        </div>
+        <div class='input-field col s12'>
+          <%= f.text_field :age, type: "number", class: "validate", :required => true %>
+          <label for="age">Age</label>
+        </div>
+        <div class='input-field col s12'>
+          <%= f.text_field :dialect, id: "dialect", type: "text", class: "validate", :required => true %>
+          <label for="dialect">Dialect</label>
+        </div>
+        <div class="input-field col s12">
+           <%= f.collection_select(:current_location, @state, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="location">Current Location</label>
+        </div>
+        <div class="input-field col s12">
+          <%= f.collection_select(:gender, @gender, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="gender">Gender</label>
+        </div>
+        <div class="input-field col s12">
+          <%= f.text_field :mobile_number, id: "mobile_number", type: "text", :required => true, :data => {:mask=> '9999-999-9999'} %>
+          <label for="mobile_numbner">Mobile Number (0918-123-4567)</label>
+        </div>
+
+      <div class="file-field input-field col s12">
+        <div class="btn green lighten-3">
+          <span>File</span>
+          <%= f.file_field :profile_photo, id: "upload"%>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate", placeholder="Upload Profile Picture">
+        </div>
+      </div>
+
+      <div class="file-field input-field col s12">
+        <div class="btn green lighten-3">
+          <span>File</span>
+          <%= f.file_field :proof, id: "upload"%>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate", placeholder="Document Verification">
+        </div>
+      </div>
+
+      <br />
+      <br/>
+      <br/>
+      <center>
+        <br />
+        <br />
+        <button type='submit' name='btn_login' class='col s12 btn btn-large indigo'>Update!</button>
+          <!-- <%= f.submit "Update" , class: "col s12 btn btn-large waves-effect indigo" %> -->
+      </center>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+    <%end%>
+
+    <%end%>
         </div>
       </div>
     </center>

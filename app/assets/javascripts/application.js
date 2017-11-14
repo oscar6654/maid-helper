@@ -15,7 +15,9 @@
 //= require dataTables.responsive
 //= require materialize
 //= require rails-ujs
+//= require ckeditor/init
 //= require_tree .
+//= require jasny-bootstrap
 
 $(document).ready(function() {
   Materialize.updateTextFields();

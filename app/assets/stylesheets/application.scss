@@ -17,6 +17,58 @@
  *= require_self
  */
 
+ .pagination li.active a {
+   color: #fff;
+ }
+
+ .search {
+   width: 100%;
+   position: relative
+ }
+
+ .searchTerm {
+   float: left;
+   width: 100%;
+   border: 3px solid #00B4CC;
+   padding: 5px;
+   height: 40px;
+   border-radius: 5px;
+   outline: none;
+   color: #9DBFAF;
+ }
+
+ .searchButton {
+   position: absolute;
+   right: -30px;
+   width: 40px;
+   height: 40px;
+   border: 1px solid #00B4CC;
+   background: #00B4CC;
+   text-align: center;
+   color: #fff;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 20px;
+ }
+ .searchTerm:focus{
+   color: #00B4CC;
+ }
+ //
+ .wrap{
+   width: 30%;
+   position: absolute;
+  //  top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ }
+ .wrap-mobile{
+   width: 70%;
+   position: absolute;
+  //  top: 50%;
+   left: 48%;
+   transform: translate(-50%, -50%);
+ }
+ @import "react-table/react-table.css";
  @import "materialize";
  @import "font-awesome-sprockets";
  @import "font-awesome";
@@ -132,3 +184,25 @@
 .loginBtn--google:focus {
   background: #E74B37;
 }
+
+
+
+/* MATERIALIZE CARD */
+#profile-card .card-image{
+  height: 150px;
+}
+#profile-card .card-profile-image {
+    width: 70px;
+    position: absolute;
+    top: 110px;
+    z-index: 1;
+    cursor: pointer;
+}
+#profile-card .btn-move-up {
+    position: relative;
+    top: -40px;
+    right: -18px;
+    margin-right: 10px !important;
+}
+
+/* SEARCH BAR */

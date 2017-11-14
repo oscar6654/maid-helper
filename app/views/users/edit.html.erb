@@ -10,13 +10,66 @@
 
       <div class="row">
         <div class="input-field col s6">
-          <%= f.text_field :first_name, type: "text", class: "validate", :required => true %>
+          <%= f.text_field :first_name, type: "text", class: "validate", :required => true, :readonly=> true%>
           <%= f.label :first_name, class: "active"%>
         </div>
 
         <div class="input-field col s6">
-          <%= f.text_field :last_name, type: "text", class: "validate", :required => true %>
+          <%= f.text_field :last_name, type: "text", class: "validate", :required => true, :readonly=> true %>
           <%= f.label :last_name ,class: "active"%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class='input-field col s6'>
+          <%= f.text_field :age, type: "number", class: "validate", :required => true %>
+          <label for="age">Age</label>
+        </div>
+
+        <div class='input-field col s6'>
+          <%= f.text_field :dialect, id: "dialect", type: "text", class: "validate", :required => true %>
+          <label for="dialect">Dialect</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.collection_select(:preffered_location, @state, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="preferred">Preffered Work Location</label>
+        </div>
+
+        <div class="input-field col s6">
+           <%= f.collection_select(:current_location, @state, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="location">Current Location</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.collection_select(:gender, @gender, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="gender">Gender</label>
+        </div>
+        <div class="input-field col s6">
+          <%= f.text_field :mobile_number, id: "mobile_number", type: "text", :required => true, :data => {:mask=> '9999-999-9999'} %>
+          <label for="mobile_numbner">Mobile Number (0918-123-4567)</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+           <%= f.collection_select(:cooking_skills, @rating, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="cook">Cooking Skills</label>
+        </div>
+
+        <div class="input-field col s6">
+           <%= f.collection_select(:cleaning_skills, @rating, :first, :last, {:prompt => "Please Select"}) %>
+          <label for="clean">Cleaning Skills</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_area :additional_desc, id: "additional_desc", type: "text", class:"materialize-textarea" %>
+          <label for="additional_desc">Additional Description</label>
         </div>
       </div>
 
@@ -28,6 +81,18 @@
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate", placeholder="Change User Avatar">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="file-field input-field col s12">
+          <div class="btn green lighten-3">
+            <span>File</span>
+            <%= f.file_field :proof, id: "upload"%>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate", placeholder="Document Verification">
           </div>
         </div>
       </div>

@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Maid</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Language" content="en">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
+  <style>
+    .side-nav li > a {
+      padding: 0 16px;
+    }
+  </style>
   <header>
     <nav class="nav-extended green">
     <div class="nav-background"></div>
@@ -17,6 +24,10 @@
           <% if current_user %>
               <% if current_user.admin %>
                   <li><%= link_to "All Users List", users_path %></li>
+                  <li><%= link_to "Validate", validates_path %></li>
+              <%end%>
+              <% if current_user.employer? && current_user || current_user.admin? && current_user %>
+                <li><%= link_to "Post Ad", new_job_path %></li>
               <%end%>
           <!-- <li><%= link_to "Profile", current_user %> </li> -->
           <li><a class="dropdown-button" href="#!" data-activates="dropdown5"><%= current_user.first_name %><i class="material-icons right">arrow_drop_down</i></a></li>
@@ -32,6 +43,7 @@
         </ul>
       </div>
       <div class="nav-header center">
+
         <% if current_page?(users_path) %>
           <h1>Admin Console</h1>
         <% elsif current_page?(root_path) %>
@@ -42,6 +54,10 @@
           <h1>Registration</h1>
         <% elsif current_page?(new_user_password_path) || current_page?(edit_user_password_path) || current_page?(edit_user_registration_path)%>
           <h1>Account</h1>
+        <% elsif current_page?(new_job_path)%>
+          <h1>Job Post</h1>
+        <% elsif current_page?(search_jobs_path)%>
+          <h1>Search Results </h1>
         <%else%>
           <h1>House Helper</h1>
         <%end%>
@@ -49,9 +65,29 @@
       </div>
     </nav>
     <ul class="side-nav" id="mobile-demo">
-      <li><a href="sass.html">Sass</a></li>
-      <li><a href="badges.html">Components</a></li>
-      <li><a href="collapsible.html">JavaScript</a></li>
+      <% if current_user %>
+          <ul class="collapsible collapsible-accordion">
+             <li>
+               <a class="collapsible-header waves-effect waves-teal"><%=current_user.first_name%></a>
+               <div class="collapsible-body">
+                 <ul>
+                   <li><%= link_to "Profile", current_user %> </li>
+                   <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
+                 </ul>
+               </div>
+             </li>
+             <% if current_user.admin %>
+                 <li><%= link_to "All Users List", users_path %></li>
+                 <li><%= link_to "Validate", validates_path %></li>
+             <%end%>
+             <% if current_user.employer? && current_user || current_user.admin? && current_user %>
+               <li><%= link_to "Post Ad", new_job_path %></li>
+             <%end%>
+          </ul>
+      <%else%>
+        <li><%=link_to "Log in", new_user_session_path %></li>
+        <li><%=link_to "Create Account", new_user_registration_path %></li>
+      <%end%>
     </ul>
   </header>
 

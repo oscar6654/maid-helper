@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102082248) do
+ActiveRecord::Schema.define(version: 20171114042222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
+
+  create_table "applicants", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "job_id", null: false
+    t.text "comments", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_applicants_on_job_id"
+    t.index ["user_id"], name: "index_applicants_on_user_id"
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -25,6 +36,22 @@ ActiveRecord::Schema.define(version: 20171102082248) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "work_location", null: false
+    t.text "job_description", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "email_notifications", default: false
+    t.boolean "text_notifications", default: false
+    t.boolean "job_closed", default: false
+    t.index ["job_description"], name: "index_jobs_on_job_description"
+    t.index ["title"], name: "index_jobs_on_title"
+    t.index ["user_id"], name: "index_jobs_on_user_id"
+    t.index ["work_location"], name: "index_jobs_on_work_location"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,10 +89,11 @@ ActiveRecord::Schema.define(version: 20171102082248) do
     t.string "username"
     t.string "provider"
     t.string "uid"
-    t.string "phone_number"
+    t.string "mobile_number"
+    t.string "verification_code"
+    t.boolean "proof_verified", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

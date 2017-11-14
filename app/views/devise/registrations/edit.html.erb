@@ -93,11 +93,18 @@
                 <h4 class="indigo-text">Edit Account</h4>
               </div>
             </div>
-            
+
               <div class='input-field col s12'>
                 <%= f.text_field :username, type: "text", class: "validate", :required => true %>
                 <label for="username">Username</label>
               </div>
+              <div class='input-field col s12'>
+                <%= f.text_field :mobile_number, type: "text", class: "validate" %>
+                <label for="mobile_number">Mobile Number</label>
+              </div>
+              <% if resource.is_verified %>
+                You're mobile number is verified.
+              <% end%>
             <!-- <div class='row'> -->
               <div class='input-field col s12'>
                 <%= f.email_field :email, id: "email", type: "text", class: "validate", :required => true %>
@@ -106,13 +113,13 @@
             <!-- </div> -->
             <!-- <div class="row"> -->
               <div class='input-field col s12'>
-                <%= f.password_field :password, autocomplete: "off",id: "password", :required => true %>
+                <%= f.password_field :password, autocomplete: "off",id: "password"%>
                 <label for="password", class: "active">Password</label>
               </div>
             <!-- </div> -->
             <!-- <div class='row'> -->
               <div class='input-field col s12'>
-                <%= f.password_field :password_confirmation, autocomplete: "off", :required => true%>
+                <%= f.password_field :password_confirmation, autocomplete: "off"%>
                 <label for="password", class: "active">Confirm Password</label>
               </div>
             <!-- </div> -->
@@ -124,6 +131,7 @@
             <!-- </div> -->
             <center>
               <div class='row'>
+                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Update</button>
                 <%= f.submit "Update" , class: "col s12 btn btn-large waves-effect indigo" %>
               </div>
             </center>
@@ -135,6 +143,8 @@
           <%end%>
         </div>
       </div>
+      <%= mobile_verification_button %>
+      <%= verify_mobile_number_form %>
       <%=link_to "Create Account", new_user_registration_path %>
     </center>
 

@@ -1,2 +1,117 @@
-<h3>Hello <%= @user.first_name%>!</h3>
-<%= link_to "Customize Profile", customize_user_path(@user),  class: 'right waves-effect waves-light btn'%>
+
+<br/>
+<br/>
+<ul id="tabs-swipe-demo" class="tabs">
+  <li class="tab col s5"><a class="active" href="#swipe-1">Profile</a></li>
+  <%- if current_user && current_user.employer? %>
+  <li class="tab col s5"><a href="#swipe-2">Job Post</a></li>
+  <%- elsif current_user && current_user.employee? %>
+  <li class="tab col s5"><a href="#swipe-3">Applications</a></li>
+  <%end%>
+</ul>
+<div id="swipe-1" class="col s12">
+<br/>
+  <div class="row">
+    <div class="center">
+      <%= link_to "Customize Profile", customize_user_path(@user),  class: 'waves-effect waves-light btn'%>
+    </div>
+    <br/>
+    <div class="col s8 offset-s2">
+    <div id="profile-card" class="card">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="<%= asset_path('3.png')%>">
+      </div>
+      <div class="card-content">
+        <% if current_user %>
+          <% if @user.profile_photo.file.nil? %>
+            <ul><img src=<%= asset_path('avatar.jpg')%> height="130" width="130", class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2" ></ul>
+          <%else%>
+          <img src=<%= @user.profile_photo %> height="130" width="130" class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2">
+          <%end%>
+        <%end%>
+        <span class="btn-floating activator btn-move-up waves-effect waves-light red accent-2 z-depth-4 right pulse"> <i class="material-icons">expand_less</i></span>
+        <span class="card-title activator grey-text text-darken-4"><h5 class="activator"><%= @user.first_name%></h5></span>
+        <div class="activator">
+          <p>
+          <i class="material-icons">email</i>
+            <b><%= @user.email %></b>
+          </p>
+          <p> <i class="material-icons">perm_phone_msg</i>
+            <b><%= @user.mobile_number %></b>
+          </p>
+          <p>
+            Gender: <b><%= @user.gender%></b>
+          </p>
+          <p>
+            Age: <b><%= @user.age%></b>
+          </p>
+        </div>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4"><%= @user.first_name%>'s Profile<i class="material-icons right">close</i></span>
+        <p>
+        <i class="material-icons">email</i>
+          <b><%= @user.email %></b>
+        </p>
+        <p> <i class="material-icons">perm_phone_msg</i>
+          <b><%= @user.mobile_number %></b>
+        </p>
+        <p> <i class="material-icons">gps_fixed</i>
+          <b><%= @user.current_location %></b>
+        </p>
+        <p> Gender: <b><%= @user.gender%></b></p>
+        <p> Age: <b><%= @user.age%></b></p>
+        <p> Cooking Skills: <b><%= @user.cooking_skills %></p></b>
+        <p> Cleaning Skills: <b><%= @user.cleaning_skills %></p></b>
+        <p> Dialect: <b><%= @user.dialect %></p></b>
+        <p> Additional Description: <b><%= @user.additional_desc%></b></p>
+        <%- if current_user.admin? || current_user.id == @user.id%>
+          <p> Proof: <a href="<%= @user.proof%>">Document/Image Proof</a></p>
+        <%end%>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+<%- if current_user && current_user.employer? %>
+  <div id="swipe-2" class="col s12">
+    <br/>
+    <div class="row">
+      <% @user_jobs.each do |job|%>
+
+          <div class="col s8 offset-s2">
+            <div class="card">
+              <div class="card-content black-text">
+                <span class="card-title"><%=link_to job.title, job_path(job.id)%></span>
+              </div>
+            </div>
+          </div>
+
+      <%end%>
+
+    <br/>
+    <div class="col s8 offset-s2">
+      <%= will_paginate @user_jobs %>
+    </div>
+    </div>
+  </div>
+<%- elsif current_user && current_user.employee? %>
+  <div id="swipe-3" class="col s12">
+    <br/>
+    <div class="row">
+      <% @job_applied.each do |application| %>
+          <div class="col s8 offset-s2">
+            <div class="card">
+              <div class="card-content black-text">
+                <span class="card-title"><%=link_to application.job.title, job_path(application.job.id)%></span>
+              </div>
+            </div>
+          </div>
+      <%end%>
+    <br/>
+    <div class="col s8 offset-s2">
+      <%= will_paginate @job_applied %>
+    </div>
+    </div>
+  </div>
+<%end%>

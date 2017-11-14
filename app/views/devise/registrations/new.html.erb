@@ -39,7 +39,7 @@
   <main>
     <center>
       <div class="section"></div>
-      <%= devise_error_messages! %>
+
       <%= link_to user_facebook_omniauth_authorize_path do %>
         <button class="loginBtn loginBtn--facebook">
           Login with Facebook
@@ -57,18 +57,19 @@
         <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 48px 15px 48px; border: 1px solid #EEE;">
 
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
             <!-- <div class='row'> -->
               <div class='col s12'>
                 <h4 class="indigo-text">Create Account</h4>
               </div>
             <!-- </div> -->
 
-
-            <%= f.radio_button :job_type, 'Employer' %>
-            <%= f.label :job_type, 'Employer', :value => 'Employer' %>
-            <%= f.radio_button :job_type, 'Employee' %>
-            <%= f.label :job_type, 'Employee', :value => 'Employee' %>
-
+            <div class='input-field col s12'>
+              <%= f.radio_button :job_type, 'Employer'%>
+              <%= f.label :job_type, 'Employer', :value => 'Employer' %>
+              <%= f.radio_button :job_type, 'Employee', :checked => true %>
+              <%= f.label :job_type, 'Employee', :value => 'Employee' %>
+            </div>
             <!-- <div class='row'> -->
               <div class='input-field col s12'>
                 <%= f.text_field :first_name, type: "text", class: "validate", :required => true %>
@@ -82,6 +83,10 @@
                 <label for="last_name">Last Name</label>
               </div>
             <!-- </div> -->
+            <!-- <div class='input-field col s12'>
+              <%= f.text_field :mobile_number, type: "number", class: "validate", :required => true %>
+              <label for="mobile_number">Mobile Number</label>
+            </div> -->
               <div class='input-field col s12'>
                 <%= f.text_field :username, type: "text", class: "validate", :required => true %>
                 <label for="username">Username</label>
@@ -108,7 +113,7 @@
             <br />
             <center>
               <div class='row'>
-                <%= f.submit "Create Account" , class: "col s12 btn btn-large waves-effect indigo" %>
+                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Create Account</button>
               </div>
             </center>
           <%end%>
