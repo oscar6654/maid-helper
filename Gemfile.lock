@@ -432,6 +432,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable (~> 2.5, >= 2.5.2)
   capybara
   carrierwave
   ckeditor

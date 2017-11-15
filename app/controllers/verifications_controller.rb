@@ -1,5 +1,6 @@
 class VerificationsController < ApplicationController
   require 'httparty'
+  require 'addressable/uri'
   attr_accessor :send_message
   def mobile
     # binding.remote_pry

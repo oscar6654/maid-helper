@@ -26,6 +26,7 @@ gem 'rails-assets-jasny-bootstrap', source: 'https://rails-assets.org'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-materialize', github: 'harrybournis/will_paginate-materialize'
 gem 'faker'
+gem 'addressable', '~> 2.5', '>= 2.5.2'
 
 group :development do
   gem 'listen', '~> 3.0.5'
