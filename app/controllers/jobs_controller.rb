@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   before_action :find_job, only: [:show, :edit, :update, :destroy]
+  before_action :verify_user
   def new
     if current_user.admin? && current_user || current_user && current_user.employer?
       @job = Job.new
@@ -67,6 +68,13 @@ class JobsController < ApplicationController
       @job = Job.find(params[:id])
       @job_poster = @job.user
       @job_applicants = @job.applicants
+    end
+  end
+  def verify_user
+    if user_signed_in?
+      if !current_user.is_verified
+        redirect_to new_user_verification_path
+      end
     end
   end
   private

@@ -33,11 +33,8 @@ class UsersController < ApplicationController
       @state = User::STATE
       @rating = User::RATE
       @gender = User::GENDER
-    elsif current_user
-      @user = User.friendly.find(current_user[:id])
-      @state = User::STATE
-      @rating = User::RATE
-      @gender = User::GENDER
+    else
+      redirect_to root_path, "No Access Rights"
     end
   end
 
@@ -60,10 +57,12 @@ class UsersController < ApplicationController
   def customize
     if current_user
       session[:modal] = false
-       @user = User.friendly.find(params[:id])
+       @user = User.friendly.find(current_user[:id])
        @state = User::STATE
        @rating = User::RATE
        @gender = User::GENDER
+    else
+      redirect_to root_path, notice: "No Acess Rights"
     end
   end
 

@@ -1,5 +1,6 @@
 class ApplicantsController < ApplicationController
   require 'httparty'
+  before_action :verify_user
 
   def send_message(message: nil, number: nil)
     uri     = Addressable::URI.new
@@ -36,7 +37,14 @@ class ApplicantsController < ApplicationController
     end
   end
 
-
+  def verify_user
+    if user_signed_in?
+      if !current_user.is_verified
+        redirect_to new_user_verification_path
+      end
+    end
+  end
+  
   private
   def application_params
     params.require(:applicant).permit(:comments)

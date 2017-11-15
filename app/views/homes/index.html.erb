@@ -1,6 +1,16 @@
+
+<%- if !user_signed_in? %>
 <br/>
-<br/>
+<h3><center>Welcome Join Now!</center></h3>
+
+<%end%>
+
+
+
+
 <div class="hide-on-small-only">
+  <br/>
+  <br/>
 <%= form_tag(search_jobs_path, method: :get) do %>
   <div class="wrap">
     <div class="search">
@@ -14,6 +24,8 @@
 </div>
 
 <div class="hide-on-med-and-up">
+  <br/>
+  <br/>
   <%= form_tag(search_jobs_path, method: :get) do %>
     <div class="wrap-mobile">
       <div class="search">
@@ -27,118 +39,40 @@
 </div>
 <br/>
 <%- if current_user && current_user.employee? || current_user && current_user.admin? %>
-<h3 class="center">Recommended Jobs </h3>
+  <% if !@jobs.empty? %>
+    <h3 class="center">Recommended Jobs </h3>
+  <%end%>
 <div class="row">
   <% @jobs.each do |job|%>
-
-      <div class="col s8 offset-s2">
-        <div class="card">
-          <div class="card-content black-text">
-            <span class="card-title"><%=link_to job.title, job_path(job.id)%></span>
-            <p class="grey-text"><i class="material-icons">location_on</i> <%= job.work_location%>
-              <%- if job.user.proof_verified %>
-                <i class="material-icons">check_circle</i> Verified
-              <%end%>
-            </p>
-            </p>
-            <p><%= raw job.job_description.truncate(120) %></p>
-            <p><%= link_to 'read more', job_path(job.id) %> </p>
-          </div>
+    <div class="col s8 offset-s2">
+      <div class="card">
+        <div class="card-content black-text">
+          <span class="card-title"><%=link_to job.title, job_path(job.id)%></span>
+          <p class="grey-text"><i class="material-icons">location_on</i> <%= job.work_location%>
+            <%- if job.user.proof_verified %>
+              <i class="material-icons">check_circle</i> Verified
+            <%end%>
+          </p>
+          </p>
+          <p><%= raw job.job_description.truncate(120) %></p>
+          <p><%= link_to 'read more', job_path(job.id) %> </p>
         </div>
       </div>
-
+    </div>
   <%end%>
-
+  <% if @jobs.empty? %>
+    <center><p>
+      <%- if current_user.age.nil? %>
+      <%= button_to "Customize Your Profile to get Recommendations", customize_user_path(current_user),
+      :class => "btn", :method => :get %>
+      <%else%>
+      <center><h4>No Jobs Available</h4></center>
+      <%end%>
+    </p></center>
+  <% end %>
 <br/>
-<div class="col s8 offset-s2">
-  <%= will_paginate @jobs %>
-</div>
-</div>
-<%end%>
-
-<%- if current_user && current_user.employee?  %>
-  <%- if session[:modal] == true%>
-    <%- if current_user.age.nil? %>
-      <script>
-      $(document).ready(function(){
-         $('#modal1').modal('open');
-       });
-      </script>
-    <%end%>
-  <%end%>
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <div class='center'>
-      <br/>
-
-        <h3 class="indigo-text">Let your profile work for you <%= current_user.first_name %>!</h3>
-
-      </div>
-      <br/>
-
-      <%= form_for(@user, url: u_customize_user_path(@user)) do |f| %>
-
-        <div>
-          <div class='input-field s6'>
-            <%= f.text_field :age, type: "number", class: "validate", :required => true %>
-            <label for="age">Age</label>
-          </div>
-
-          <div class='input-field s6'>
-            <%= f.text_field :dialect, id: "dialect", type: "text", class: "validate", :required => true %>
-            <label for="dialect">Dialect</label>
-          </div>
-        </div>
-
-        <div>
-          <div class="input-field s6">
-            <%= f.collection_select(:preffered_location, @state, :first, :last, {:prompt => "Please Select"}) %>
-            <label for="preferred">Preffered Work Location</label>
-          </div>
-
-          <div class="input-field s6">
-             <%= f.collection_select(:current_location, @state, :first, :last, {:prompt => "Please Select"}) %>
-            <label for="location">Current Location</label>
-          </div>
-        </div>
-        <div class="input-field s12">
-          <%= f.collection_select(:gender, @gender, :first, :last, {:prompt => "Please Select"}) %>
-          <label for="gender">Gender</label>
-        </div>
-        <div>
-          <div class="input-field s6">
-             <%= f.collection_select(:cooking_skills, @rating, :first, :last, {:prompt => "Please Select"}) %>
-            <label for="cook">Cooking Skills</label>
-          </div>
-          <div class="input-field s6">
-             <%= f.collection_select(:cleaning_skills, @rating, :first, :last, {:prompt => "Please Select"}) %>
-            <label for="clean">Cleaning Skills</label>
-          </div>
-        </div>
-        <div class="input-field s12">
-          <%= f.text_area :additional_desc, id: "additional_desc", type: "text", class:"materialize-textarea" %>
-          <label for="additional_desc">Additional Description</label>
-        </div>
-        <div class="file-field input-field s12">
-          <div class="btn green lighten-3">
-            <span>File</span>
-            <%= f.file_field :profile_photo, id: "upload"%>
-          </div>
-          <div class="file-path-wrapper">
-            <input class="file-path validate", placeholder="Upload Profile Picture">
-          </div>
-        </div>
-
-
-
-        <br />
-        <button type='submit' name='btn_login' class='btn waves-effect green'>Done</button>
-
-
-    <%end%>
+  <div class="col s8 offset-s2">
+    <%= will_paginate @jobs %>
   </div>
-<%else%>
-<center>
-  <h3>Welcome Join Now</h3>
-</center>
+</div>
 <%end%>

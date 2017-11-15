@@ -4,6 +4,10 @@
 <%= link_to "Close Post", job_path(@job), method: :delete, data: { confirm: "Close Post?" }, class: 'btn btn-sm btn-default red lighten-3' %>
 <%end%>
 <%- if current_user.admin && current_user || current_user && current_user.employee? %>
+  <%- if current_user.age.nil?%>
+    <%= button_to "Let The Employer Know You Better!", customize_user_path(current_user), :class => "btn", :method => :get %>
+    <br/>
+  <%end%>
   <%- if !@applied %>
     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">APPLY</a>
   <%end%>
