@@ -16,6 +16,8 @@ class UsersController < ApplicationController
       if Applicant.exists?(user_id: User.friendly.find(params[:id]),  job_id: current_user.jobs)
         @user = User.friendly.find(params[:id])
         @user_jobs = @user.jobs.paginate(page: params[:page], per_page: 10)
+      else
+        redirect_to root_url, notice: "No Access Rights"
       end
     elsif current_user && current_user.employee?
      @user = User.friendly.find(current_user[:id])
