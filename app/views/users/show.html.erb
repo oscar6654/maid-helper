@@ -3,18 +3,20 @@
 <br/>
 <ul id="tabs-swipe-demo" class="tabs">
   <li class="tab col s5"><a class="active" href="#swipe-1">Profile</a></li>
-  <%- if current_user && current_user.employer? %>
+  <%- if current_user && current_user.employer? && @user.id == current_user.id %>
   <li class="tab col s5"><a href="#swipe-2">Job Post</a></li>
-  <%- elsif current_user && current_user.employee? %>
+  <%- elsif current_user && current_user.employee? && @user.id == current_user.id%>
   <li class="tab col s5"><a href="#swipe-3">Applications</a></li>
   <%end%>
 </ul>
 <div id="swipe-1" class="col s12">
 <br/>
   <div class="row">
+    <%- if current_user && @user.id == current_user.id %>
     <div class="center">
       <%= link_to "Customize Profile", customize_user_path(@user),  class: 'waves-effect waves-light btn'%>
     </div>
+    <%end%>
     <br/>
     <div class="col s8 offset-s2">
     <div id="profile-card" class="card">

@@ -49,13 +49,28 @@ $(document).ready(function(){
     </div>
 
     <%- if current_user.admin? && current_user || @job.user_id == current_user.id %>
-      <div class="card blue">
-        <div class="card-content black-text">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
           <span class="card-title">Applications</span>
           <% @job_applicants.each do |applicant| %>
-            <div class="card">
-              Name: <%= link_to applicant.user.first_name, user_path(applicant.user.id) %>
+            <div class="card black">
+              <div class="applications-pad">
+              <p>
+                <% if applicant.user.profile_photo.file.nil? %>
+                  <img src=<%= asset_path('avatar.jpg')%> height="50" width="50", class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2" >
+                <%else%>
+                  <img src=<%= applicant.user.profile_photo %> height="50" width="50" class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2">
+                <%end%>
+              </p>
+              <p>
+                <%= link_to applicant.user.first_name, user_path(applicant.user) %>
+                <%- if applicant.user.proof_verified %>
+                  <i class="material-icons">check_circle</i> Verified
+                <%end%>
+              </p>
+              <b>Message to Employer </b>
               <p><%= applicant.comments %></p>
+            </div>
             </div>
           <%end%>
         </div>
