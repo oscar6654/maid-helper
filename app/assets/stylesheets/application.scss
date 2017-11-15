@@ -85,7 +85,7 @@
 //    left: 300px;
 // }
  nav .nav-background {
-     background-image: url('nav-bg.png');
+     background-image: url(asset-path('nav-bg.png'));
     //  background-image: url('http://cdn.shopify.com/s/files/1/2030/2737/files/icon-seamless_ef568d79-394b-49ab-a3c5-128827d788e8.png?v=1496294246');
      overflow: hidden;
      position: absolute;
@@ -162,7 +162,7 @@
 }
 .loginBtn--facebook:before {
   border-right: #364e92 1px solid;
-  background: url('icon_facebook.png') 6px 6px no-repeat;
+  background: url(asset-path('icon_facebook.png')) 6px 6px no-repeat;
 }
 .loginBtn--facebook:hover,
 .loginBtn--facebook:focus {
@@ -178,7 +178,7 @@
 }
 .loginBtn--google:before {
   border-right: #BB3F30 1px solid;
-  background: url('icon_google.png') 6px 6px no-repeat;
+  background: url(asset-path('icon_google.png')) 6px 6px no-repeat;
 }
 .loginBtn--google:hover,
 .loginBtn--google:focus {
