@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "acme/registrations", :verification => "custom_verification", :sessions => "acme/sessions"}, :path => 'u'
   # devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", sessions: 'users/sessions' }
+  resources :tos , only: [:index]
   resources :users
   resources :jobs do
     resources :applicants, only: [:new, :create]

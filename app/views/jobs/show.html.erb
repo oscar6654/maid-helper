@@ -1,4 +1,5 @@
 <br/>
+<div class="container">
 <%- if current_user.admin && current_user || @job.user_id == current_user.id %>
 <%=link_to "Edit Post", edit_job_path(@job), class: "btn btn-sm btn-default" %>
 <%= link_to "Close Post", job_path(@job), method: :delete, data: { confirm: "Close Post?" }, class: 'btn btn-sm btn-default red lighten-3' %>
@@ -57,8 +58,30 @@ $(document).ready(function(){
         <div class="card-content white-text">
           <span class="card-title">Applications</span>
           <% @job_applicants.each do |applicant| %>
-            <div class="card black">
-              <div class="applications-pad">
+          <div class="s12 m8 offset-m2 l6 offset-l3">
+            <div class="card black lighten-5 z-depth-1 applications-pad">
+              <div class="row valign-wrapper">
+                <div class="col s2">
+                  <% if applicant.user.profile_photo.file.nil? %>
+                    <img src=<%= asset_path('avatar.jpg')%> height="50" width="50", class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2" >
+                  <%else%>
+                    <img src=<%= applicant.user.profile_photo %> height="50" width="50" class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2">
+                  <%end%>
+                </div>
+                <div class="col s10">
+                  <p>
+                  <%= link_to applicant.user.first_name, user_path(applicant.user) %>
+                  <%- if applicant.user.proof_verified %>
+                    <i class="material-icons">check_circle</i> Verified
+                  <%end%>
+                </p>
+                  <span class="white-text">
+                    <%= applicant.comments %>
+                  </span>
+                </div>
+              </div>
+            </div>
+              <!-- <div class="applications-pad">
               <p>
                 <% if applicant.user.profile_photo.file.nil? %>
                   <img src=<%= asset_path('avatar.jpg')%> height="50" width="50", class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2" >
@@ -74,13 +97,12 @@ $(document).ready(function(){
               </p>
               <b>Message to Employer </b>
               <p><%= applicant.comments %></p>
-            </div>
+            </div> -->
             </div>
           <%end%>
         </div>
       </div>
     <%end%>
   </div>
-
-
+</div>
 </div>

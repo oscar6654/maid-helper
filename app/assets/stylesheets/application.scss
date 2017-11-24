@@ -16,13 +16,22 @@
  *= require_tree .
  *= require_self
  */
+.parallax-container{
+  width: 100%;
+  max-width: initial;
+}
 
- .applications-pad {
-   padding: 10px 10px 10px 10px
+ body {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
  }
- .pagination li.active a {
-   color: #fff;
+
+ main {
+   flex: 1 0 auto;
  }
+
+
 
  .search {
    width: 100%;
@@ -42,7 +51,7 @@
 
  .searchButton {
    position: absolute;
-   right: -30px;
+   right: -10px;
    width: 40px;
    height: 40px;
    border: 1px solid #00B4CC;
@@ -62,14 +71,16 @@
    position: absolute;
   //  top: 50%;
    left: 50%;
-   transform: translate(-50%, -50%);
+   transform: translate(-50%, 50%);
+   z-index: 90;
  }
  .wrap-mobile{
    width: 70%;
    position: absolute;
   //  top: 50%;
    left: 48%;
-   transform: translate(-50%, -50%);
+   transform: translate(-50%, 50%);
+   z-index: 90;
  }
  @import "react-table/react-table.css";
  @import "materialize";

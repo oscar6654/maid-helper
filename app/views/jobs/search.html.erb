@@ -1,6 +1,5 @@
 <!-- <h3> Search Results </h3> -->
-<br/>
-<br/>
+<div class="container">
 <div class="hide-on-small-only">
 <%= form_tag(search_jobs_path, method: :get) do %>
   <div class="wrap">
@@ -28,32 +27,85 @@
 </div>
 <br/>
 <br/>
-<div class="row">
+<br/>
+<div class="row hide-on-med-and-up">
+  <h4 class="center">Search Results</h4>
   <% @jobs.each do |job|%>
-
-      <div class="col s8 offset-s2">
-        <div class="card">
-          <div class="card-content black-text">
-            <span class="card-title"><%=link_to job.title, job_path(job.id)%>
-            </span>
-            <p class="grey-text"><i class="material-icons">location_on</i> <%= job.work_location%>
-              <%- if job.user.proof_verified %>
-                <i class="material-icons">check_circle</i> Verified
-              <%end%>
-            </p>
-            <p><%= raw job.job_description.truncate(120) %></p>
-            <p><%= link_to 'read more', job_path(job.id) %> </p>
-          </div>
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content black-text">
+          <span class="card-title"><%=link_to job.title, job_path(job.id)%></span>
+          <p class="grey-text"><i class="material-icons">location_on</i> <%= job.work_location%>
+            <%- if job.user.proof_verified %>
+              <i class="material-icons">check_circle</i> Verified
+            <%end%>
+          </p>
+          </p>
+          <p><%= raw job.job_description.truncate(200) %></p>
+          <p><%= link_to 'read more', job_path(job.id) %> </p>
         </div>
       </div>
-
+    </div>
   <%end%>
-
+  <% if @jobs.empty? %>
+    <center><p>
+      <%- if user_signed_in?%>
+        <%- if current_user.age.nil?%>
+        <%= button_to "Customize Profile", customize_user_path(current_user),
+        :class => "btn", :method => :get %>
+        <%else%>
+        <br/>
+          <center><h4>No Jobs Available</h4></center>
+        <%end%>
+      <%else%>
+      <br/>
+        <center><h4>No Jobs Available</h4></center>
+      <%end%>
+    </p></center>
+  <% end %>
 <br/>
-<div class="col s8 offset-s2">
-  <%= will_paginate @jobs %>
+  <div class="col s12">
+    <%= will_paginate @jobs %>
+  </div>
+</div>
+<div class="row hide-on-small-and-down">
+  <h4 class="center">Search Results</h4>
+  <% @jobs.each do |job|%>
+    <div class="col s8 offset-s2">
+      <div class="card">
+        <div class="card-content black-text">
+          <span class="card-title"><%=link_to job.title, job_path(job.id)%></span>
+          <p class="grey-text"><i class="material-icons">location_on</i> <%= job.work_location%>
+            <%- if job.user.proof_verified %>
+              <i class="material-icons">check_circle</i> Verified
+            <%end%>
+          </p>
+          </p>
+          <p><%= raw job.job_description.truncate(200) %></p>
+          <p><%= link_to 'read more', job_path(job.id) %> </p>
+        </div>
+      </div>
+    </div>
+  <%end%>
+  <% if @jobs.empty? %>
+    <center><p>
+      <%- if user_signed_in?%>
+        <%- if current_user.age.nil?%>
+        <%= button_to "Customize Profile", customize_user_path(current_user),
+        :class => "btn", :method => :get %>
+        <%else%>
+          <center><h4>No Jobs Available</h4></center>
+          <br/>
+        <%end%>
+      <%else%>
+      <br/>
+        <center><h4>No Jobs Available</h4></center>
+      <%end%>
+    </p></center>
+  <% end %>
+<br/>
+  <div class="col s8 offset-s2">
+    <%= will_paginate @jobs %>
+  </div>
 </div>
 </div>
-<% if @jobs.empty? %>
-<p> No Results found.</p>
-<% end %>
