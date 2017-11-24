@@ -56,18 +56,22 @@ class JobsController < ApplicationController
     end
   end
   def show
-    if current_user && current_user.employee?
-      @applied = Applicant.exists?(user_id: current_user.id, job_id: @job.id)
-      @application = Applicant.new
+    if !user_signed_in?
       @job = Job.find(params[:id])
-      @job_poster = @job.user
-      @job_applicants = @job.applicants
-    elsif current_user.admin? && current_user || @job.user_id == current_user.id
-      @applied = Applicant.exists?(user_id: current_user.id, job_id: @job.id)
-      @application = Applicant.new
-      @job = Job.find(params[:id])
-      @job_poster = @job.user
-      @job_applicants = @job.applicants
+    else
+      if current_user && current_user.employee?
+        @applied = Applicant.exists?(user_id: current_user.id, job_id: @job.id)
+        @application = Applicant.new
+        @job = Job.find(params[:id])
+        @job_poster = @job.user
+        @job_applicants = @job.applicants
+      elsif current_user.admin? && current_user || @job.user_id == current_user.id
+        @applied = Applicant.exists?(user_id: current_user.id, job_id: @job.id)
+        @application = Applicant.new
+        @job = Job.find(params[:id])
+        @job_poster = @job.user
+        @job_applicants = @job.applicants
+      end
     end
   end
   def verify_user

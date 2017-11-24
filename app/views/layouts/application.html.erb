@@ -124,11 +124,6 @@
           <li><%=link_to "Create Account", new_user_registration_path %></li>
         <%end%>
       </ul>
-
-
-
-
-
   <%end%>
   </header>
 <main>
@@ -152,7 +147,11 @@
     <!-- </div> -->
   </body>
 </main>
-
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large waves-effect waves-light orange pulse" href="mailto:someperson@example.com" target="_blank">
+      <i class="material-icons">message</i>
+  </a>
+</div>
 <footer class="page-footer green lighten-1">
   <div class="container">
     <div class="row">
@@ -163,10 +162,9 @@
       <div class="col l4 offset-l2 s12">
         <h5 class="white-text">Links</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          <li><a class="grey-text text-lighten-3" href="/tos">Terms of Service</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
         </ul>
       </div>
     </div>
