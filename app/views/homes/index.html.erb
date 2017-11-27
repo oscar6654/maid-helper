@@ -166,6 +166,7 @@
     <% if @jobs.empty? %>
     <center><p>
       <%- if current_user.age.nil? %>
+      <h4>Fill up Profile to get Recommendations</h4>
       <%= button_to "Customize Profile", customize_user_path(current_user),
       :class => "btn", :method => :get %>
       <%else%>
@@ -199,6 +200,7 @@
   <% if @jobs.empty? %>
   <center><p>
     <%- if current_user.age.nil? %>
+    <h4>Fill up Profile to get Recommendations</h4>
     <%= button_to "Customize Profile", customize_user_path(current_user),
     :class => "btn", :method => :get %>
     <%else%>
