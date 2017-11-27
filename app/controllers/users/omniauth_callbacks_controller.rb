@@ -23,7 +23,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       # binding.remote_pry
       session['devise.google_oauth2_data'] = request.env["omniauth.auth"].except("extra")
-      redirect_to users_finish_signup_google_path
+      redirect_to u_finish_signup_google_path
     end
   end
   def finish_signup_google
@@ -62,7 +62,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       # binding.remote_pry
       session['devise.facebook_data'] = auth
-      redirect_to users_finish_signup_path
+      redirect_to u_finish_signup_path
     end
   end
 

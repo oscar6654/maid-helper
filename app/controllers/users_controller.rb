@@ -7,22 +7,28 @@ class UsersController < ApplicationController
     end
   end
   def show
-    session[:modal] = false
-    if current_user.admin?
-     @user = User.friendly.find(params[:id])
-     @user_jobs = @user.jobs.paginate(page: params[:page], per_page: 10)
-     @job_applied = @user.applicants.paginate(page: params[:page], per_page: 10)
-    elsif current_user && current_user.employer?
-      if Applicant.exists?(user_id: User.friendly.find(params[:id]),  job_id: current_user.jobs)
-        @user = User.friendly.find(params[:id])
-        @user_jobs = @user.jobs.paginate(page: params[:page], per_page: 10)
-      else
-        redirect_to root_url, notice: "No Access Rights"
+    # session[:modal] = false
+    # binding.remote_pry
+    # @user = User.find(params[:id])
+    if user_signed_in?
+      if current_user.admin?
+       @user = User.friendly.find(params[:id])
+       @user_jobs = @user.jobs.paginate(page: params[:page], per_page: 10)
+       @job_applied = @user.applicants.paginate(page: params[:page], per_page: 10)
+      elsif current_user && current_user.employer?
+        if Applicant.exists?(user_id: User.friendly.find(params[:id]),  job_id: current_user.jobs)
+          @user = User.friendly.find(params[:id])
+          @user_jobs = @user.jobs.paginate(page: params[:page], per_page: 10)
+        else
+          redirect_to root_url, notice: "No Access Rights"
+        end
+      elsif current_user && current_user.employee?
+       @user = User.friendly.find(current_user[:id])
+       @job_applied = @user.applicants.paginate(page: params[:page], per_page: 10)
+     else current_user
+       @user = User.friendly.find(current_user[:id])
+      #  @user_jobs = @user.jobs.paginate(page: params[:page], per_page: 10)
       end
-    elsif current_user && current_user.employee?
-     @user = User.friendly.find(current_user[:id])
-     @job_applied = @user.applicants.paginate(page: params[:page], per_page: 10)
-    #  @user_jobs = @user.jobs.paginate(page: params[:page], per_page: 10)
     end
   end
 

@@ -13,10 +13,10 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
   devise_scope :user do
-    get "/users/finish_signup" => "users/omniauth_callbacks#finish_signup"
-    post "/users/finished_signup" => "users/omniauth_callbacks#finished_signup"
-    get "/users/finish_signup_google" => "users/omniauth_callbacks#finish_signup_google"
-    post "/users/finished_signup_google" => "users/omniauth_callbacks#finished_signup_google"
+    get "/u/finish_signup" => "users/omniauth_callbacks#finish_signup"
+    post "/u/finished_signup" => "users/omniauth_callbacks#finished_signup"
+    get "/u/finish_signup_google" => "users/omniauth_callbacks#finish_signup_google"
+    post "/u/finished_signup_google" => "users/omniauth_callbacks#finished_signup_google"
     # get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
     # delete "/users/sign_out" => "devise/sessions#destroy"
     # delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
