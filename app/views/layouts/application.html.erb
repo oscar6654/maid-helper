@@ -17,10 +17,10 @@
   </style>
   <header>
     <%- if !user_signed_in? %>
-    <nav class="nav-extended green">
+    <nav class="nav-extended blue lighten-2">
     <div class="nav-background"></div>
       <div class="nav-wrapper container">
-        <%= link_to "Ka-tulong", root_path, class:"brand-logo"%>
+        <%= link_to "Helping Helper", root_path, class:"brand-logo"%>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if current_user %>
@@ -43,8 +43,8 @@
         </ul>
       </div>
       <div class="nav-header center">
-          <h1>Ka-tulong</h1>
-          <div class="tagline">Hello</div>
+          <h1>Helping Helper</h1>
+          <div class="tagline">Connects both parties by helping each other</div>
       </div>
     </nav>
     <ul class="side-nav" id="mobile-demo">
@@ -74,10 +74,10 @@
     </ul>
   <%else%>
 
-  <nav class="nav green lighten-1">
+  <nav class="nav blue lighten-2">
     <div class="nav-wrapper container">
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <%= link_to "Ka-tulong", root_path, class:"brand-logo"%>
+      <%= link_to "Helping Helper", root_path, class:"brand-logo"%>
       <ul class="right hide-on-med-and-down compress">
         <% if current_user %>
             <% if current_user.admin %>
@@ -152,27 +152,34 @@
       <i class="material-icons">message</i>
   </a>
 </div>
-<footer class="page-footer green lighten-1">
+<footer class="page-footer blue lighten-2">
   <div class="container">
     <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Footer Content</h5>
-        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+      <div class="col l4 s12">
+        <h5 class="white-text">About Us</h5>
+        <p class="grey-text text-lighten-4">We provide a service where you can connect with opportunities by finding a helper or an employer to work closely together.</p>
       </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Links</h5>
+      <div class="col l2 offset-l2 s12">
+        <h5 class="white-text">Social Media</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="/tos">Terms of Service</a></li>
           <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</a></li>
           <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        </ul>
+      </div>
+      <div class="col l2 offset-l2 s12">
+        <h5 class="white-text">Policies</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-4" href="/tos">Terms of Use</a></li>
+          <li><a class="grey-text text-lighten-4" href="/privacy_policy">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
   </div>
   <div class="footer-copyright">
     <div class="container">
-    © 2017 Copyright Ka-tulong
+    © 2017 Copyright Helping Helper
     <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+
     </div>
   </div>
 </footer>

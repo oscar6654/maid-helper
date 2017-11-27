@@ -23,6 +23,7 @@ $(document).ready(function() {
   Materialize.updateTextFields();
   $(".button-collapse").sideNav();
   $('.parallax').parallax();
+  $('.tooltipped').tooltip({delay: 50});
 });
 $(document).ready(function(){
     $('.dropdown-button').dropdown(

@@ -41,7 +41,7 @@
             <%end%>
           </p>
           </p>
-          <p><%= raw job.job_description.truncate(200) %></p>
+          <p><%= raw job.job_description.lines.first.truncate(150) %></p>
           <p><%= link_to 'read more', job_path(job.id) %> </p>
         </div>
       </div>
@@ -81,7 +81,7 @@
             <%end%>
           </p>
           </p>
-          <p><%= raw job.job_description.truncate(200) %></p>
+          <p><%= raw job.job_description.lines.first.truncate(150) %></p>
           <p><%= link_to 'read more', job_path(job.id) %> </p>
         </div>
       </div>

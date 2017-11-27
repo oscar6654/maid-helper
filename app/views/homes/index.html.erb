@@ -1,129 +1,164 @@
+
 <div class="hide-on-small-only">
   <%= form_tag(search_jobs_path, method: :get) do %>
-    <div class="wrap">
-      <div class="search">
-          <%= text_field_tag 'query', params[:query], placeholder: '   I\'m looking for...', class: "searchTerm browser-default" %>
-        <button type="submit" class="searchButton">
-          <i class="fa fa-search"></i>
-        </button>
-      </div>
+  <div class="wrap">
+    <div class="search">
+      <%= text_field_tag 'query', params[:query], placeholder: '   I\'m looking for...', class: "searchTerm browser-default" %>
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+      </button>
     </div>
+  </div>
   <%end%>
 </div>
 
 <div class="hide-on-med-and-up">
   <%= form_tag(search_jobs_path, method: :get) do %>
-    <div class="wrap-mobile">
-      <div class="search">
-          <%= text_field_tag 'query', params[:query], placeholder: '   I\'m looking for...', class: "searchTerm browser-default" %>
-        <button type="submit" class="searchButton">
-          <i class="fa fa-search"></i>
-        </button>
-      </div>
+  <div class="wrap-mobile">
+    <div class="search">
+      <%= text_field_tag 'query', params[:query], placeholder: '   I\'m looking for...', class: "searchTerm browser-default" %>
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+      </button>
     </div>
+  </div>
   <%end%>
 </div>
 
 <%- if !user_signed_in? %>
   <div class="parallax-container">
-     <div class="parallax"><img src=<%= asset_path('parallax1.jpg')%> ></div>
-   </div>
-   <div class="section white">
-     <div class="row container">
-     	<div class="col s12 m6 center hide-on-small-and-down">
-         <img src=<%= asset_path('helper.jpg')%> height="400" width="350", class="responsive-img" >
-     	</div>
-       <div class="col s6 offset-s3 m6 center hide-on-med-and-up">
-         <img src=<%= asset_path('helper.jpg')%> height="500" width="400", class="circle responsive-img" >
-       </div>
-       <div class="hide-on-small-only">
-     		<div class="col s12 m6">
-     			<h5>Help You Clean</h5>
-     			<ul class="start-feature-list">
-     			  <li>House chores stress relieved! </li>
+    <div class="parallax"><img src=<%= asset_path('dream-house.png')%> ></div>
+  </div>
+  <div class="section white">
+    <div class="row container">
+      <div class="col s12 m6 center hide-on-small-and-down">
+        <img src=<%= asset_path('helper.jpg')%> height="400" width="350", class="responsive-img" >
+      </div>
+      <div class="col s6 offset-s3 m6 center hide-on-med-and-up">
+        <img src=<%= asset_path('helper.jpg')%> height="500" width="400", class="circle responsive-img" >
+      </div>
+      <div class="hide-on-small-only">
+        <div class="col s12 m6">
+          <h4>Help You Clean</h4>
+          <ul class="start-feature-list">
+            <li>House chores stress relieved! </li>
             <li>No more problems and duties. </li>
-     			</ul>
-     			<p><a href="#custom">GET MORE INFO</a></p>
-     		</div>
-       </div>
-       <div class="hide-on-med-and-up">
-         <div class="col s12 m6 center">
-           <h5>Help You Clean</h5>
-           <ul class="start-feature-list">
-             <li>House chores stress relieved! </li>
-             <li>No more problems and duties. </li>
-           </ul>
-           <p><a href="#custom">GET MORE INFO</a></p>
-         </div>
-       </div>
-     </div>
-   </div>
-   <div class="parallax-container">
-     <div class="parallax"><img src=<%= asset_path('parallax2.jpg')%> ></div>
-   </div>
-
-
-
-<br/>
-
-<br/>
-<div class="row container">
-	<div class="col s12 m6 center hide-on-small-and-down">
-    <img src=<%= asset_path('helper.jpg')%> height="400" width="350", class="responsive-img" >
-	</div>
-  <div class="col s6 offset-s3 m6 center hide-on-med-and-up">
-    <img src=<%= asset_path('helper.jpg')%> height="500" width="400", class="circle responsive-img" >
-  </div>
-  <div class="hide-on-small-only">
-		<div class="col s12 m6">
-			<h5>Customise</h5>
-			<ul class="start-feature-list">
-			  <li>TEST PUT WORDS HERE</li>
-			</ul>
-			<p><a href="#custom">GET MORE INFO</a></p>
-		</div>
-  </div>
-  <div class="hide-on-med-and-up">
-    <div class="col s12 m6 center">
-      <h5>Customise</h5>
-      <ul class="start-feature-list">
-        <li>TEST PUT WORDS HERE</li>
-      </ul>
-      <p><a href="#custom">GET MORE INFO</a></p>
+          </ul>
+        </div>
+      </div>
+      <div class="hide-on-med-and-up">
+        <div class="col s12 m6 center">
+          <h5>Help You Clean</h5>
+          <ul class="start-feature-list">
+            <li>House chores stress relieved! </li>
+            <li>No more problems and duties. </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+  <div class="parallax-container">
+    <div class="parallax"><img src=<%= asset_path('helping-hands.jpg')%> ></div>
+  </div>
+
+  <br/>
+
+  <br/>
+  <div class="row container">
+    <div class="col s12 m6 center hide-on-small-and-down">
+      <img src=<%= asset_path('verify.png')%> height="200" width="250" class="responsive-img" >
+    </div>
+    <div class="col s6 offset-s3 m6 center hide-on-med-and-up">
+      <img src=<%= asset_path('verify.png')%> height="500" width="400", class="circle responsive-img" >
+    </div>
+    <div class="hide-on-small-only">
+      <div class="col s12 m6">
+        <h4>Upload Proof to Get Verified!</h4>
+        <ul class="start-feature-list">
+          <li>You don't have to deal with uncertainties whether the employer or the employee is legitimate.</li>
+          <li>Verification Tag allows the employee and employer to connect with you!</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hide-on-med-and-up">
+      <div class="col s12 m6 center">
+        <h5>Upload Proof to Get Verified!</h5>
+        <ul class="start-feature-list">
+          <li>You don't have to deal with uncertainties whether the employer or the employee is legitimate.</li>
+          <li>Verification Tag allows the employee and employer to connect with you!.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 <%end%>
 
 
-
-<%- if current_user && current_user.employee? || current_user && current_user.admin? %>
+<%- if user_signed_in? %>
+<br/>
+<br/>
+<br/>
+<br/>
 <div class="container">
-  <br/>
-  <br/>
-  <br/>
-  <% if !@jobs.empty? %>
+<div class="row">
+<!-- <div class="col s12 m9 l10"> -->
+<ul class="collection">
+  <div class="hide-on-small-and-down">
+    <li class="collection-item avatar">
+      <% if current_user.profile_photo.file.nil? %>
+        <ul><img src=<%= asset_path('avatar.jpg')%> height="70" width="50", class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2" ></ul>
+      <%else%>
+        <ul><img src=<%= current_user.profile_photo %> height="70" width="50" class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2"></ul>
+      <%end%>
+      <span class="title blue-text"><%= link_to current_user.first_name, current_user %></span>
+      <p><%= current_user.email%> <br>
+      </p>
+      <%= button_to "Update my Profile", customize_user_path(current_user),
+      :class => "btn secondary-content", :method => :get %>
+      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+    </li>
+  </div>
+  <div class="hide-on-med-and-up">
+    <li class="collection-item avatar">
+      <% if current_user.profile_photo.file.nil? %>
+        <ul><img src=<%= asset_path('avatar.jpg')%> height="70" width="50", class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2" ></ul>
+      <%else%>
+        <ul><img src=<%= current_user.profile_photo %> height="70" width="50" class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2"></ul>
+      <%end%>
+      <span class="title blue-text"><%= link_to current_user.first_name, current_user %></span>
+      <p><%= current_user.email%> <br>
+      </p>
+      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+    </li>
+  </div>
+</ul>
+
+
+
+<!-- EMPLOYEE -->
+<%- if current_user && current_user.employee? || current_user && current_user.admin? %>
+  <div class="card-panel">
+    <% if !@jobs.empty? %>
     <h3 class="center">Recommended Jobs </h3>
-  <%end%>
-<div class="row hide-on-med-and-up">
-  <% @jobs.each do |job|%>
-    <div class="col s12">
-      <div class="card">
-        <div class="card-content black-text">
-          <span class="card-title"><%=link_to job.title, job_path(job.id)%></span>
-          <p class="grey-text"><i class="material-icons">location_on</i> <%= job.work_location%>
-            <%- if job.user.proof_verified %>
+    <%end%>
+    <div class="row hide-on-med-and-up">
+      <% @jobs.each do |job|%>
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content black-text">
+            <span class="card-title"><%=link_to job.title, job_path(job.id)%></span>
+            <p class="grey-text"><i class="material-icons">location_on</i> <%= job.work_location%>
+              <%- if job.user.proof_verified %>
               <i class="material-icons">check_circle</i> Verified
-            <%end%>
+              <%end%>
+            </p>
           </p>
-          </p>
-          <p><%= raw job.job_description.truncate(200) %></p>
+          <p><%= raw job.job_description.lines.first.truncate(150) %></p>
           <p><%= link_to 'read more', job_path(job.id) %> </p>
         </div>
       </div>
     </div>
-  <%end%>
-  <% if @jobs.empty? %>
+    <%end%>
+    <% if @jobs.empty? %>
     <center><p>
       <%- if current_user.age.nil? %>
       <%= button_to "Customize Profile", customize_user_path(current_user),
@@ -132,44 +167,115 @@
       <center><h4>No Jobs Available</h4></center>
       <%end%>
     </p></center>
+    <% end %>
+    <br/>
+    <div class="col s12">
+      <%= will_paginate @jobs %>
+    </div>
+  </div>
+  <div class="row hide-on-small-and-down">
+    <% @jobs.each do |job|%>
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content black-text">
+          <span class="card-title"><%=link_to job.title, job_path(job.id)%></span>
+          <p class="grey-text"><i class="material-icons">location_on</i> <%= job.work_location%>
+            <%- if job.user.proof_verified %>
+            <i class="material-icons">check_circle</i> Verified
+            <%end%>
+          </p>
+        </p>
+        <p><%= raw job.job_description.lines.first.truncate(150) %></p>
+        <p><%= link_to 'read more', job_path(job.id) %> </p>
+      </div>
+    </div>
+  </div>
+  <%end%>
+  <% if @jobs.empty? %>
+  <center><p>
+    <%- if current_user.age.nil? %>
+    <%= button_to "Customize Profile", customize_user_path(current_user),
+    :class => "btn", :method => :get %>
+    <%else%>
+    <center><h4>No Jobs Available</h4></center>
+    <%end%>
+  </p></center>
   <% end %>
-<br/>
+  <br/>
   <div class="col s12">
     <%= will_paginate @jobs %>
   </div>
 </div>
-<div class="row hide-on-small-and-down">
-  <% @jobs.each do |job|%>
-    <div class="col s8 offset-s2">
-      <div class="card">
-        <div class="card-content black-text">
-          <span class="card-title"><%=link_to job.title, job_path(job.id)%></span>
-          <p class="grey-text"><i class="material-icons">location_on</i> <%= job.work_location%>
-            <%- if job.user.proof_verified %>
+</div>
+<%end%>
+<!-- EMPLOYEE -->
+
+<%- if current_user && current_user.employer? || current_user && current_user.admin? %>
+  <div class="card-panel">
+    <% if !@applicants.empty? %>
+    <h3 class="center">Applied Helpers </h3>
+    <%end%>
+    <div class="row hide-on-med-and-up">
+      <% @applicants.each do |apply|%>
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content black-text">
+            <span class="card-title"><%=link_to apply.job.title, job_path(apply.job.id)%></span>
+            <p class="grey-text"><i class="material-icons">location_on</i> <%= apply.job.work_location%>
+              <%- if apply.job.user.proof_verified %>
               <i class="material-icons">check_circle</i> Verified
-            <%end%>
+              <%end%>
+            </p>
           </p>
-          </p>
-          <p><%= raw job.job_description.truncate(200) %></p>
-          <p><%= link_to 'read more', job_path(job.id) %> </p>
+          <p><%= raw apply.job.job_description.lines.first.truncate(150) %></p>
+          <p><%= link_to 'read more', job_path(apply.job.id) %> </p>
         </div>
       </div>
     </div>
-  <%end%>
-  <% if @jobs.empty? %>
-    <center><p>
-      <%- if current_user.age.nil? %>
-      <%= button_to "Customize Profile", customize_user_path(current_user),
-      :class => "btn", :method => :get %>
-      <%else%>
-      <center><h4>No Jobs Available</h4></center>
-      <%end%>
-    </p></center>
-  <% end %>
-<br/>
-  <div class="col s8 offset-s2">
-    <%= will_paginate @jobs %>
+    <%end%>
+    <% if @applicants.empty? %>
+      <center><h4>No Applicants</h4></center>
+    <% end %>
+    <br/>
+    <div class="col s12">
+      <%= will_paginate @applicants %>
+    </div>
   </div>
+
+<!-- DESKTOP -->
+  <div class="row hide-on-small-and-down">
+    <!-- <div class="col s12 m9 l10"> -->
+    <% @applicants.each do |apply|%>
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content black-text">
+          <span class="card-title"><%=link_to apply.job.title, job_path(apply.job.id)%></span>
+          <p class="grey-text"><i class="material-icons">location_on</i> <%= apply.job.work_location%>
+            <%- if apply.job.user.proof_verified %>
+            <i class="material-icons">check_circle</i> Verified
+            <%end%>
+          </p>
+        </p>
+        <p><%= raw apply.job.job_description.lines.first.truncate(150) %></p>
+        <p><%= link_to 'read more', job_path(apply.job.id) %> </p>
+      </div>
+    </div>
+  </div>
+  <%end%>
+  <% if @applicants.empty? %>
+    <center><h4>No Applicants</h4></center>
+  <% end %>
+  <br/>
+  <div class="col s12">
+    <%= will_paginate @applicants %>
+  </div>
+<!-- </div> -->
+</div>
+<!-- DESKTOP -->
+</div>
+
+<%end%>
+<!-- </div> -->
 </div>
 </div>
 <%end%>
