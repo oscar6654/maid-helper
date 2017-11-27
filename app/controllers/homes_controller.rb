@@ -8,6 +8,7 @@ class HomesController < ApplicationController
       @rating = User::RATE
       @gender = User::GENDER
       @jobs = Job.where(["work_location =? and job_closed =?", current_user.preffered_location, false]).paginate(page: params[:page], per_page: 8)
+      @applicants = current_user.applicants.paginate(page: params[:page], per_page: 8)
       # binding.remote_pry
     elsif current_user && current_user.employer? || current_user && current_user.admin?
       @applicants = current_user.applicants.paginate(page: params[:page], per_page: 8)
