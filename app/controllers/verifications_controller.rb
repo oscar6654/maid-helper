@@ -48,7 +48,7 @@ class VerificationsController < ApplicationController
     elsif tp[0] = "6"
       to.sub!("6", '+6')
     end
-    send_message(message: "Welcome To House Helper #{current_user.first_name}! Please confirm your mobile number. Your verification code is #{current_user.verification_code}.",number: to)
+    send_message(message: "Welcome To Helping Helper #{current_user.first_name}! Please confirm your mobile number. Your verification code is #{current_user.verification_code}.",number: to)
     # @twilio_client = Twilio::REST::Client.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
     # @twilio_client.account.sms.messages.create(
     #   :from => ENV['TWILIO_PHONE_NUMBER'],

@@ -44,7 +44,7 @@ class ApplicantsController < ApplicationController
       end
     end
   end
-  
+
   private
   def application_params
     params.require(:applicant).permit(:comments)
