@@ -2,8 +2,9 @@
 class Job < ApplicationRecord
   belongs_to :user
   has_many :applicants, dependent: :destroy
+
   def self.text_search(query)
-    self.where("similarity(title, ?) > 0.2 or similarity(work_location, ?) > 0.1 or similarity(job_description, ?) > 0.6", query,query,query).order("similarity(title, #{ActiveRecord::Base.connection.quote(query)}) DESC")
+    self.where("similarity(title, ?) > 0.2 or similarity(work_location, ?) > 0.1 or similarity(job_description, ?) > 0.3", query,query,query).order("similarity(title, #{ActiveRecord::Base.connection.quote(query)}) DESC")
   end
   # , similarity(job_description, ?) > 0.3, similarity(work_location, ?) > 0.5
   # include Elasticsearch::Model

@@ -44,7 +44,8 @@
       </div>
       <div class="nav-header center">
           <h1>Helping Helper</h1>
-          <div class="tagline">Connects both parties by helping each other</div>
+          <div class="tagline">Connecting both parties by helping each other.</div>
+          <div class="tagline2">Looking for house maid, driver or ... ?</div>
       </div>
     </nav>
     <ul class="side-nav" id="mobile-demo">
@@ -68,6 +69,7 @@
              <%end%>
           </ul>
       <%else%>
+        <li><%=link_to "Home", root_path %></li>
         <li><%=link_to "Log in", new_user_session_path %></li>
         <li><%=link_to "Create Account", new_user_registration_path %></li>
       <%end%>
@@ -101,6 +103,7 @@
   </nav>
       <ul class="side-nav" id="mobile-demo">
         <% if current_user %>
+          <li><%=link_to "Home", root_path %></li>
             <ul class="collapsible collapsible-accordion">
                <li>
                  <a class="collapsible-header waves-effect waves-teal"><%=current_user.first_name%></a>
@@ -120,6 +123,7 @@
                <%end%>
             </ul>
         <%else%>
+          <li><%=link_to "Home", root_path %></li>
           <li><%=link_to "Log in", new_user_session_path %></li>
           <li><%=link_to "Create Account", new_user_registration_path %></li>
         <%end%>

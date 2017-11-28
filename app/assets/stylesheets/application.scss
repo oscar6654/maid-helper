@@ -113,8 +113,13 @@
 
  .tagline {
      display: block;
-     margin: -40px 0 40px 0;
+     margin: -40px 0 0 0;
      color: rgba(255,255,255,0.8);
+ }
+ .tagline2{
+   display: block;
+   margin: -30px 0 0 0;
+   color: rgba(255,255,255,0.8);
  }
 
  nav .nav-header {
