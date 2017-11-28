@@ -55,9 +55,44 @@
       <div class="section"></div>
 
       <div class="container">
-        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="z-depth-1 grey lighten-4 row hide-on-med-and-up" style="display: inline-block; padding: 32px 20px 0px 20px; border: 1px solid #EEE;">
+          <div class='row'>
+            <div class='col s12'>
+              <h4 class="indigo-text">Log In</h4>
+            </div>
+          </div>
 
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class='row'>
+            <div class='input-field col s12'>
+              <%= f.text_field :login, id: "login", type: "text", class: "validate", :required => true %>
+              <label for="login">Enter your username or email</label>
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class='input-field col s12'>
+              <%= f.password_field :password, autocomplete: "off",id: "password", :required => true %>
+              <label for="password", class: "active">Enter your password</label>
+            </div>
+            <label style='float: right;'>
+              <%= link_to "Forgot Password?", new_password_path(resource_name), class:'pink-text' %>
+              <!-- <a class='pink-text' href='#!'><b>Forgot Password?</b></a> -->
+            </label>
+          </div>
+
+          <br />
+          <center>
+            <div class='row'>
+              <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Login</button>
+            </div>
+            <div class='row'>
+              By Signing In, I agree to the <%= link_to "Terms of Use", tos_path %> provided.
+            </div>
+          </center>
+        </div>
+
+          <div class="z-depth-1 grey lighten-4 row hide-on-small-only" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
             <div class='row'>
               <div class='col s12'>
                 <h4 class="indigo-text">Log In</h4>
@@ -76,7 +111,7 @@
                 <%= f.password_field :password, autocomplete: "off",id: "password", :required => true %>
                 <label for="password", class: "active">Enter your password</label>
               </div>
-              <label style='float: right;'>
+              <label>
                 <%= link_to "Forgot Password?", new_password_path(resource_name), class:'pink-text' %>
 								<!-- <a class='pink-text' href='#!'><b>Forgot Password?</b></a> -->
 							</label>
@@ -91,8 +126,8 @@
                 By Signing In, I agree to the <%= link_to "Terms of Use", tos_path %> provided.
               </div>
             </center>
-          <%end%>
-        </div>
+          </div>
+        <%end%>
       </div>
       <%=link_to "Create Account", new_user_registration_path %>
     </center>
