@@ -120,6 +120,11 @@
       <%end%>
       <span class="title blue-text"><%= link_to current_user.first_name, current_user %></span>
       <p><%= current_user.email%> <br>
+      <%- if current_user.proof_verified == false %>
+      <p><%= link_to "Not Verified", customize_user_path(current_user) %></p>
+      <%else%>
+      <p>Verified</p>
+      <%end%>
       </p>
       <%= button_to "Update my Profile", customize_user_path(current_user),
       :class => "btn secondary-content", :method => :get %>

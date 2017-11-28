@@ -26,9 +26,9 @@
       <div class="section"></div>
 
       <div class="container">
+        <div class="hide-on-small-only">
         <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 48px 15px 48px; border: 1px solid #EEE;">
-  <%- if current_user && current_user.employee? %>
-          <div class="hide-on-small-only">
+        <%- if current_user && current_user.employee? %>
           <%= form_for(@user, url: u_customize_user_path(@user)) do |f| %>
             <div class='col s12'>
               <h4 class="indigo-text">Customize Profile</h4>
@@ -80,6 +80,7 @@
               <%= f.text_area :additional_desc, id: "additional_desc", type: "text", class:"materialize-textarea" %>
               <label for="additional_desc">Additional Description</label>
             </div>
+
             <div class="file-field input-field col s12">
               <div class="btn green lighten-3">
                 <span>File</span>
@@ -89,7 +90,9 @@
                 <input class="file-path validate", placeholder="Upload Profile Picture">
               </div>
             </div>
-
+            <div class="col s12">
+            <p><b>Upload Proof to get Verified!</b></p>
+            </div>
             <div class="file-field input-field col s12">
               <div class="btn green lighten-3">
                 <span>File</span>
@@ -109,10 +112,10 @@
             </center>
           </div>
           <%end%>
+    </div>
 
 
-
-
+    <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 20px 15px 20px; border: 1px solid #EEE;">
           <div class="hide-on-med-and-up">
             <%= form_for(@user, url: u_customize_user_path(@user)) do |f| %>
               <div class='col s12'>
@@ -166,7 +169,9 @@
                 <input class="file-path validate", placeholder="Upload Profile Picture">
               </div>
             </div>
-
+            <div class="col s12">
+            <p><b>Upload Proof to get Verified!</b></p>
+            </div>
             <div class="file-field input-field col s12">
               <div class="btn green lighten-3">
                 <span>File</span>
@@ -191,9 +196,12 @@
               <br/>
           </div>
           <%end%>
+    </div>
+
     <%else%>
 
     <div class="hide-on-small-only">
+      <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 48px 15px 48px; border: 1px solid #EEE;">
     <%= form_for(@user, url: u_customize_user_path(@user)) do |f| %>
       <div class='col s12'>
         <h4 class="indigo-text">Customize Profile</h4>
@@ -233,7 +241,9 @@
           <input class="file-path validate", placeholder="Upload Profile Picture">
         </div>
       </div>
-
+      <div class="col s12">
+      <p><b>Upload Proof to get Verified! </b></p>
+      </div>
       <div class="file-field input-field col s12">
         <div class="btn green lighten-3">
           <span>File</span>
@@ -257,8 +267,9 @@
 
 </div>
 
-
+<!-- //TEST -->
     <div class="hide-on-med-and-up">
+      <div class="z-depth-1 grey lighten-4 row" style="padding: 32px 20px 15px 20px; border: 1px solid #EEE;">
       <%= form_for(@user, url: u_customize_user_path(@user)) do |f| %>
         <div class='col s12'>
           <h4 class="indigo-text">Customize Profile</h4>
@@ -293,7 +304,9 @@
           <input class="file-path validate", placeholder="Upload Profile Picture">
         </div>
       </div>
-
+      <div class="col s12">
+      <p><b>Upload Proof to get Verified!</b></p>
+      </div>
       <div class="file-field input-field col s12">
         <div class="btn green lighten-3">
           <span>File</span>
@@ -317,6 +330,7 @@
         <br/>
         <br/>
     </div>
+  </div>
     <%end%>
 
     <%end%>
