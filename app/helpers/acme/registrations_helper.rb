@@ -3,7 +3,7 @@ module Acme::RegistrationsHelper
   def mobile_verification_button
     return '' unless current_user.needs_mobile_number_verifying?
     html = <<-HTML
-      <h3>Verify Mobile Number</h3>
+      <h4>Verify Mobile Number</h4>
       #{form_tag(verifications_path, method: "post")}
       #{button_tag('Send verification code', type: "submit", class: "col s12 btn btn-large waves-effect indigo")}
       <br/>
@@ -19,7 +19,7 @@ module Acme::RegistrationsHelper
     return '' unless current_user.resend_code?
     html = <<-HTML
       #{form_tag(delete_number_verifications_path, method: "patch")}
-      #{button_tag('Change Phone Number', type: "submit", class: "btn-flat")}
+      #{button_tag('Resend Code', type: "submit", class: "btn-flat")}
       <br/>
       <br/>
       </form>
@@ -30,7 +30,7 @@ module Acme::RegistrationsHelper
     return '' if current_user.verification_code.blank?
     p current_user.verification_code.blank?
     html = <<-HTML
-      <h3>Enter Verification Code</h3>
+      <h4>Enter Verification Code</h4>
       #{form_tag(verifications_path, method: "patch")}
       #{text_field_tag('verification_code')}
       #{button_tag('Submit', type: "submit", class: "col s12 btn btn-large waves-effect indigo")}
