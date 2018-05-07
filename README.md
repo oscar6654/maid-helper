@@ -1,24 +1,15 @@
-# README
+# MAID HELPER FINDER
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a project and fully functional SMS Validator and Job search website focused on finding house-helper in Philippines.
 
-Things you may want to cover:
+Features covered:
 
-* Ruby version
+* SMS Device Validation for each user to be confirmed
 
-* System dependencies
+* Job Search for Employees
 
-* Configuration
+* Location based searches and multiple searching algorithm
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+* Craiglist + Indeed type job search with improvements
 
 * ...
